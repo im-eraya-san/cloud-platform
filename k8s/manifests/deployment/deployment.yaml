@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  namespace: development
+  labels:
+    app: app-deployment
+    app-version: "v2"
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-deployment
+      app-version: "v2"
+
+  template:
+    metadata:
+      labels:
+        app: app-deployment
+        app-version: "v2"
+    spec:
+      containers:
+      - name: app
+        image: "3raya/sql-web-admin:0.2"
+        resources:
+          limits:
+            cpu: 200m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+        env:
+        - name: DB_NAME
+          value: "postgres"
+        
+        - name: DB_USER
+          value: "postgres"
+
+        - name: DB_PASSWORD
+          value: "postgres"
+        
+        - name: HOST
+          value: "db-service"
+
+        ports:
+        - containerPort: 5000
+

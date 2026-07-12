@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: deployment-service
+  namespace: development
+spec:
+  selector:
+    app: "app-deployment"
+    app-version: "v2"
+  type: ClusterIP
+  ports: 
+    - protocol: TCP
+      port: 9090
+      targetPort: 5000
