@@ -6,11 +6,21 @@ metadata:
   labels:
     app: "backend"
     db-version: "latest"
-
+    app-version: "v1"
 spec:
+  volumes:
+   - name: migration
+     configMap:
+       name: db-migration
+
   containers:
   - name: db
     image: "postgres"
+
+    volumeMounts:
+     - name: migration
+       mountPath:  /docker-entrypoint-initdb.d
+
     resources:
       limits:
         cpu: 200m
@@ -20,11 +30,15 @@ spec:
         memory: 200Mi
     env:
     - name: POSTGRES_USER
-      value: "postgres"
-    
+      valueFrom:
+        secretKeyRef:
+          name: app-credentials
+          key: db-user
     - name: POSTGRES_PASSWORD
-      value: "postgres"
-
+      valueFrom:
+       secretKeyRef:
+         name: app-credentials
+         key: db-password
     ports:
     - containerPort:  5432
       name:  http

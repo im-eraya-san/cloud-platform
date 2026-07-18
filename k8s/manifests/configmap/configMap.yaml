@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-migration
+  namespace: development
+data:  
+  create-db.sql: |
+    CREATE DATABASE app;
+    CREATE USER app with password 'app';
+    GRANT connect on database app to app;
