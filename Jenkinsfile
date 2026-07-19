@@ -26,8 +26,8 @@ pipeline {
             steps {
                 script {
                     // call kubectl.groovy file to call k8s api
-                    kubectl('get nodes')
-                    kubectl('get ns')
+                    kubectl("get nodes")
+                    kubectl("get ns")
                 }
             }
         }
@@ -35,7 +35,7 @@ pipeline {
         stage('Namespace') {
             steps{
                 script {
-                    kubectl('apply -f ${cfg.CONFIG_LOCATION}/namespace.yaml')
+                    kubectl("apply -f ${cfg.CONFIG_LOCATION}/namespace.yaml")
                 }
             }
         }
