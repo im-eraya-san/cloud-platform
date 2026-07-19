@@ -1,5 +1,8 @@
 @Library('library') _
 
+// Define cfg variable
+def cfg
+
 pipeline {
 
 //  Get any available build agent
@@ -8,7 +11,7 @@ pipeline {
     stages {
 //  Initializing environment variables
         stage("Init Env") {
-            steps(){
+            steps{
                 // Loading manifest file location
                 script{
                     // variable that will hold the value
@@ -30,7 +33,7 @@ pipeline {
         }
 // Creating Namespace
         stage('Namespace') {
-            steps {
+            steps{
                 script {
                     kubectl('apply -f ${cfg.CONFIG_LOCATION}/namespace.yaml')
                 }
