@@ -3,9 +3,6 @@
 // Define cfg variable
 def cfg
 
-// files and sub dir location
-def files = ['namespace.yaml', 'quota.yaml', 'secrets/secrets.yml', 'configmap/configMap.yaml', 'pods/db.yaml']
-
 pipeline {
 
 //  Get any available build agent
@@ -23,7 +20,6 @@ pipeline {
                 }
             }
         }
-
 // Get the cluster status k8s
         stage('k8s cluster status') {
             steps {
@@ -34,11 +30,11 @@ pipeline {
                 }
             }
         }
-// Creating Namespace
-        stage('Namespace') {
+// Creating k8s Resources
+        stage('k8s Resources') {
             steps{
                 script {
-                    for (f in files){
+                    for ( f in cfg.FILE_LOCATION ){
                         echo "calling file: ${f}"
                         kubectl("apply -f ${cfg.CONFIG_LOCATION}/${f}")
                     }
