@@ -41,5 +41,16 @@ pipeline {
                 }
             }
         }
+// Verifying k8s Resources
+        stage("Verifying"){
+            steps {
+                script{
+                    echo "+--------------------------------------------------------+"
+                    kubectl("get pods -n ${cfg.DEV}")
+                    echo "+--------------------------------------------------------+"
+
+                }
+            }
+        }
     }
 }

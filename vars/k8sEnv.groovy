@@ -1,6 +1,7 @@
 def location(){
     return [ 
         CONFIG_LOCATION: 'k8s/manifests',
+        DEV: "development"
         FILE_LOCATION: [
             'namespace.yaml', 
             'quota.yaml', 
