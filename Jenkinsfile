@@ -10,7 +10,7 @@ pipeline {
         stage("Init Env") {
             steps(){
                 // Loading manifest file location
-                script(){
+                script{
                     // variable that will hold the value
                     // calling k8sEnv.groovy script
                     cfg = k8sEnv()
