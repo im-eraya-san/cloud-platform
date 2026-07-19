@@ -6,11 +6,10 @@ pipeline {
         
         stage('Get Nodes') {
             steps {
-
-                def cfg = k8sEnv()
-                echo cfg.CONFIG_LOCATION
-
                 script {
+                    def cfg = k8sEnv()
+                    echo cfg.CONFIG_LOCATION
+            
                     kubectl('get nodes')
                 }
             }
