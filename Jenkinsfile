@@ -3,6 +3,9 @@
 // Define cfg variable
 def cfg
 
+// files and sub dir location
+def files = ['namespace.yaml', 'quota.yaml', 'secrets/secrets.yml', 'configmap/configMap.yaml', 'pods/db.yaml']
+
 pipeline {
 
 //  Get any available build agent
@@ -35,7 +38,10 @@ pipeline {
         stage('Namespace') {
             steps{
                 script {
-                    kubectl("apply -f ${cfg.CONFIG_LOCATION}/namespace.yaml")
+                    for (f in files){
+                        echo "calling file: ${f}"
+                        kubectl("apply -f ${cfg.CONFIG_LOCATION}/${f}")
+                    }
                 }
             }
         }
