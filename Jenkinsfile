@@ -13,7 +13,7 @@ pipeline {
                 script{
                     // variable that will hold the value
                     // calling k8sEnv.groovy script
-                    cfg = k8sEnv()
+                    cfg = k8sEnv.location()
                 }
             }
         }
