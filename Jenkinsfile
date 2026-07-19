@@ -7,7 +7,7 @@ pipeline {
         stage('Get Nodes') {
             steps {
                 script {
-                    kube('get nodes')
+                    kubectl('get nodes')
                 }
             }
         }
