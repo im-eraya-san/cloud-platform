@@ -7,7 +7,7 @@ pipeline {
         stage('Get Nodes') {
             steps {
                 script {
-                    def cfg = k8sEnv()
+                    def cfg = k8sEnv.location()
                     echo cfg.CONFIG_LOCATION
             
                     kubectl('get nodes')
